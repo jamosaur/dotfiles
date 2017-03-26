@@ -1,0 +1,7 @@
+URxvt.font: xft:Fira Code Retina:size=8,style=Retina
+URxvt*letterSpace: -2
+URxvt.scrollBar: false
+URxvt.internalBorder:25
+URxvt.depth: 2
+URxvt.perl.ext-common: selection-to-clipboard
+URxvt.clipboard.autocopy: true

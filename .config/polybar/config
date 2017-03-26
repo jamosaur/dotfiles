@@ -1,0 +1,240 @@
+; modified from https://github.com/Capuno/Rice
+
+[colors]
+background = #282828
+bg-alt = #3c3836
+foreground = #ebdbb2
+accent = #83a598
+urgent = #fb4934
+trans = #00000000
+
+[bar/top]
+	wm-restack = i3
+	width = 100%
+	height = 35
+  lickareas = 35
+	fixed-center = true
+
+	border-size = 10
+	border-color = ${colors.trans}
+
+	background = ${colors.background}
+	foreground = ${colors.foreground}
+
+	tray-position = right
+
+	spacing = 4
+	line-size = 4
+	padding-left = 2
+	padding-right = 5
+	module-margin-left = 3
+	module-margin-right = 3
+
+	font-0 = Sans-Regular:size=8;2
+	font-1 = MaterialIcons:size=10;1
+	font-2 = FontAwesome:size=14;2
+	font-3 = Siji:size=10;1
+	font-4 = Monospace:size=10;1
+
+	modules-center = i3
+	modules-left = date cpu memory
+	modules-right = volume powermenu
+
+[module/cpu]
+	type = internal/cpu
+	interval = 2
+	format = <label> <bar-load>
+	label = CPU
+
+	bar-load-width = 30
+	bar-load-foreground-0 = ${colors.accent}
+	;bar-load-foreground-1 = #26D292
+	;bar-load-foreground-2 = #fba922
+	;bar-load-foreground-3 = #ff5555
+	bar-load-indicator = |
+	bar-load-indicator-foreground = #ff
+	bar-load-indicator-font = 4
+	bar-load-fill = ─
+	bar-load-fill-font = 4
+	bar-load-empty = ─
+	bar-load-empty-font = 4
+	bar-load-empty-foreground = #444444
+
+[module/date]
+	type = internal/date
+	date =    %%{F${colors.foreground}%a %e %b%%{F-}  %%{F#928374}%H:%M%{F-}
+
+[module/i3]
+	type = internal/i3
+
+	pin-workspaces = false
+
+	ws-icon-0 = 1:;
+	ws-icon-1 = 2:;
+	ws-icon-2 = 3:;
+	ws-icon-3 = 4;
+	ws-icon-4 = 5;
+	ws-icon-5 = 6;6
+	ws-icon-6 = 7;7
+	ws-icon-7 = 8;8
+	ws-icon-8 = 9;9
+	ws-icon-9 = 10:;
+	ws-icon-10 = 11;
+	ws-icon-11 = 12;
+	ws-icon-12 = 13;
+	ws-icon-13 = 14;O
+	ws-icon-14 = 15;P
+	ws-icon-15 = 16;J
+	ws-icon-16 = 17;K
+	ws-icon-17 = 18;
+	ws-icon-18 = 19;
+	ws-icon-default = ♟
+
+	label-focused = %icon%
+	label-focused-foreground = ${colors.accent}
+	label-focused-background = ${colors.background}
+	label-focused-underline = ${colors.accent}
+	label-focused-padding = 2
+
+	label-unfocused = %icon%
+	label-unfocused-padding = 2
+
+	label-visible = %icon%
+	label-visible-underline = #555555
+	label-visible-padding = 2
+
+	label-urgent = %icon%
+	label-urgent-foreground = #000000
+	label-urgent-background = ${colors.background}
+	label-urgent-underline = ${colors.urgent}
+	label-urgent-padding = 2
+
+[module/memory]
+	type = internal/memory
+	format = <label> <bar-used>
+	label = RAM
+
+	interval = 3
+
+	bar-used-width = 30
+	bar-used-foreground-0 = ${colors.accent}
+	;bar-used-foreground-1 = #aaff77
+	;bar-used-foreground-2 = #fba922
+	;bar-used-foreground-3 = #ff5555
+	bar-used-indicator = |
+	bar-used-indicator-foreground = #ff
+	bar-used-fill = ─
+	bar-used-empty = ─
+	bar-used-empty-foreground = #444444
+
+[module/mpd]
+	type = internal/mpd
+	clickable_progress = true
+	format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+
+	; label-song = %artist% - %album% - %title%
+	label-song = %artist% - %title%
+
+	icon-play = 
+	icon-pause = 
+	icon-stop = 
+	icon-prev = 
+	icon-next = 
+	icon-random = 
+	icon-repeat = 
+
+	toggle_on-foreground =
+	toggle_off-foreground = #55
+
+	bar-progress-width = 10
+	bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+	bar-progress-indicator = |
+	bar-progress-indicator-foreground = #ff
+	bar-progress-indicator-font = 3
+	bar-progress-fill = ─
+	bar-progress-fill-foreground = #bb
+	bar-progress-fill-font = 3
+	bar-progress-empty = ─
+	bar-progress-empty-font = 3
+	bar-progress-empty-foreground = #44
+
+[module/powermenu]
+	type = custom/menu
+
+	;label-padding = 5
+	format-spacing = 2
+	label-separator =  
+	label-open = 
+	label-open-foreground = ${colors.accent}
+	label-close = 
+	label-close-foreground = ${colors.accent}
+
+
+	menu-0-0 = Power
+	menu-0-0-exec = menu-open-1
+	menu-0-1 = Lock
+	menu-0-1-exec = /home/jam/.config/bin/lock
+
+	menu-1-0 = 
+	menu-1-0-exec = menu-open-0
+	menu-1-1 = Reboot
+	menu-1-1-exec = sudo reboot
+	menu-1-2 = Shut Down
+	menu-1-2-exec = sudo shutdown "now"
+	menu-1-3 = Suspend
+	menu-1-3-exec = pm-suspend
+
+
+[module/volume]
+type = internal/volume
+; speaker_mixer = Speaker
+; headphone_mixer = Headphone
+; headphone_control_numid = 9
+
+format-volume = <ramp-volume> <bar-volume>
+label-muted =  ──────────── muted ────────────
+label-muted-foreground = #66
+label-muted-font = 4
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+bar-volume-width = 30
+bar-volume-foreground-0 = ${colors.accent}
+;bar-volume-foreground-1 = #26D292
+;bar-volume-foreground-2 = #26D292
+;bar-volume-foreground-3 = #26D292
+bar-volume-indicator = |
+bar-volume-indicator-foreground = #ff
+bar-volume-indicator-font = 4
+bar-volume-fill = ─
+bar-volume-fill-font = 4
+bar-volume-empty = ─
+bar-volume-empty-font = 4
+bar-volume-empty-foreground = #444444
+
+[module/wireless-network]
+type = internal/network
+interface = wlx001cdf2fb909
+interval = 3.0
+ping_interval = 10
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+label-disconnected =    not connected
+label-disconnected-foreground = #66
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+animation-packetloss-0 = 
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = ${bar/top.foreground}
+animation-packetloss-framerate_ms = 500
+
+; vim:ft=dosini

@@ -1,0 +1,13 @@
+rofi.width: 100
+rofi.padding: 645
+rofi.eh: 2
+rofi.lines: 3
+rofi.font: System San Francisco Display 18
+
+! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
+rofi.color-normal: #282828,  #928374,  #282828,  #282828,  #fbf1c7
+rofi.color-urgent: #282828,  #458588,  #282828,  #282828,  #fbf1c7
+rofi.color-active: #282828,  #458588,  #282828,  #282828,  #fbf1c7
+
+!                  'background', 'border', 'separator'
+rofi.color-window: #282828, #282828,  #282828
